@@ -1,5 +1,5 @@
-#ifndef LABELS_HPP
-#define LABELS_HPP
+#ifndef GENERICOBJECT_INCLUDES_LABELS_HPP
+#define GENERICOBJECT_INCLUDES_LABELS_HPP
 
 #include <string>
 #include <vector>

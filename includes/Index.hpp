@@ -1,5 +1,5 @@
-#ifndef INDEX_HPP
-#define INDEX_HPP
+#ifndef GENERICOBJECT_INCLUDES_INDEX_HPP
+#define GENERICOBJECT_INCLUDES_INDEX_HPP
 
 #include <string>
 #include <vector>
