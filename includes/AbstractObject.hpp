@@ -1,5 +1,5 @@
-#ifndef GENERICOBJECT_INCLUDES_GENERIC_OBJECT_HPP
-#define GENERICOBJECT_INCLUDES_GENERIC_OBJECT_HPP
+#ifndef ABSTRACTOBJECT_INCLUDES_GENERIC_OBJECT_HPP
+#define ABSTRACTOBJECT_INCLUDES_GENERIC_OBJECT_HPP
 
 #include "Labels.hpp"
 
@@ -12,36 +12,35 @@ namespace Abstract
  * 			We could name it "generic identifiers" or something of the
  * 			sort.
  */
-class GenericObject
+class AbstractObject
 {
 public:
 	/************************************************
 	 *  CONSTRUCTORS/DESTRUCTORS
 	 ***********************************************/
-	GenericObject()
+	AbstractObject()
 	{
 	}
 
-	GenericObject(std::string name)
+	AbstractObject(std::string name)
 	{
 		this->setName(name);
 	}
 
-	GenericObject(std::string name, std::string label)
+	AbstractObject(std::string name, std::string label)
 	{
 		this->setName(name);
 		this->setLabels(label);
 	}
-	GenericObject(std::string name, std::vector<std::string> labels)
+	AbstractObject(std::string name, std::vector<std::string> labels)
 	{
 		this->setName(name);
 		this->setLabels(labels);
 	}
-	~GenericObject()
-	{
-		//lazyInfo(__LINE__, __func__, "Destructing generic object for name <"+this->getName()+">");
-	}
-
+	
+	virtual ~GenericObject() = 0;
+	
+	
 	/************************************************
 	 *  GETTER/SETTER
 	 ***********************************************/
@@ -92,5 +91,8 @@ private:
 	Labels labels;
 
 };
+
+AbstractObject::~AbstractObject() {}
+
 }
-#endif // GENERIC_OBJECT_HPP
+#endif // ABSTRACT_OBJECT_HPP
