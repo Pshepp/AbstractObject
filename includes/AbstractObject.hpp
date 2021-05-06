@@ -38,7 +38,7 @@ public:
 		this->setLabels(labels);
 	}
 	
-	virtual ~GenericObject() = 0;
+	virtual ~AbstractObject() = 0;
 	
 	
 	/************************************************
