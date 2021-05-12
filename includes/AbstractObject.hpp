@@ -92,7 +92,7 @@ private:
 
 };
 
-AbstractObject::~AbstractObject() {}
+inline AbstractObject::~AbstractObject() {}
 
 }
 #endif // ABSTRACT_OBJECT_HPP
