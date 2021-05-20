@@ -6,10 +6,8 @@
 #include <algorithm>
 
 //TODO: Pick a better namespace name for this, figure out what we should use instead of `unsigned int`
-namespace Abstract
-{
-class Labels
-{
+namespace Abstract {
+class Labels {
 public:
 	/************************************************
 	 *  CONSTRUCTORS/DESTRUCTORS
@@ -20,6 +18,18 @@ public:
 	Labels(std::string name, std::string label);
 	Labels(std::string name, std::vector<std::string> labels);
 	~Labels();
+
+	//copy constructor
+	Labels(const Labels &rhs);
+
+	//move constructor
+	Labels(Labels &&rhs);
+
+	//copy assignment
+	Labels& operator=(const Labels &rhs);
+
+	//move assignment
+	Labels& operator=(Labels &&rhs);
 
 	/************************************************
 	 *  GETTER/SETTER

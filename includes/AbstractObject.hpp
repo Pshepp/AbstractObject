@@ -37,10 +37,36 @@ public:
 		this->setName(name);
 		this->setLabels(labels);
 	}
-	
+
+	//copy constructor
+	inline AbstractObject(const AbstractObject &rhs) :
+			labels(rhs.labels)
+	{
+	}
+
+	//move constructor
+	inline AbstractObject(AbstractObject &&rhs) :
+			labels(rhs.labels)
+	{
+	}
+
+	//copy assignment
+	inline AbstractObject& operator=(const AbstractObject &rhs)
+	{
+		this->labels = rhs.labels;
+		return *this;
+	}
+
+	//move assignment
+	inline AbstractObject& operator=(AbstractObject &&rhs)
+	{
+		this->labels = rhs.labels;
+		return *this;
+	}
+
+
 	virtual ~AbstractObject() = 0;
-	
-	
+
 	/************************************************
 	 *  GETTER/SETTER
 	 ***********************************************/
@@ -92,7 +118,9 @@ private:
 
 };
 
-inline AbstractObject::~AbstractObject() {}
+inline AbstractObject::~AbstractObject()
+{
+}
 
 }
 #endif // ABSTRACT_OBJECT_HPP

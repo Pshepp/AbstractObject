@@ -108,6 +108,32 @@ bool Labels::compareLabels(const std::vector<std::string> otherLabels)
 	return this->compareLabels(otherLabels, 1);
 }
 
+//copy constructor
+Labels::Labels(const Labels &rhs) :
+		name(rhs.name), labels(rhs.labels)
+{
+
+}
+//move constructor
+Labels::Labels(Labels &&rhs) :
+		name(rhs.name), labels(rhs.labels)
+{
+}
+//copy assignment
+Labels& Labels::operator =(const Labels &rhs)
+{
+	this->name = rhs.name;
+	this->labels = rhs.labels;
+	return *this;
+}
+//move assignment
+Labels& Labels::operator =(Labels &&rhs)
+{
+	this->name = rhs.name;
+	this->labels = rhs.labels;
+	return *this;
+}
+
 bool Labels::compareLabels(const std::vector<std::string> otherLabels,
 		unsigned int numMatches)
 {
