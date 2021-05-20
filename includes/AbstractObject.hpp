@@ -70,15 +70,15 @@ public:
 	/************************************************
 	 *  GETTER/SETTER
 	 ***********************************************/
-	std::string getName()
+	std::string getName() const
 	{
 		return this->labels.getName();
 	}
-	std::string getLabel()
+	std::string getLabel() const
 	{
 		return this->labels.getLabel();
 	}
-	std::vector<std::string> getLabels()
+	std::vector<std::string> getLabels() const
 	{
 		return this->labels.getLabels();
 	}
