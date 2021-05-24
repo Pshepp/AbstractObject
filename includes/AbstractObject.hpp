@@ -12,98 +12,57 @@ namespace Abstract
  * 			We could name it "generic identifiers" or something of the
  * 			sort.
  */
-class AbstractObject
+class AbstractObject : public Labels
 {
 public:
 	/************************************************
 	 *  CONSTRUCTORS/DESTRUCTORS
 	 ***********************************************/
-	AbstractObject()
+
+	AbstractObject(std::string name) :
+		Labels(name)
 	{
 	}
 
-	AbstractObject(std::string name)
+	AbstractObject(std::string name, std::string label) :
+		Labels(name, label)
 	{
-		this->setName(name);
 	}
 
-	AbstractObject(std::string name, std::string label)
+	AbstractObject(std::string name, std::vector<std::string> labels) :
+		Labels(name, labels)
 	{
-		this->setName(name);
-		this->setLabels(label);
-	}
-	AbstractObject(std::string name, std::vector<std::string> labels)
-	{
-		this->setName(name);
-		this->setLabels(labels);
 	}
 
 	//copy constructor
 	inline AbstractObject(const AbstractObject &rhs) :
-			labels(rhs.labels)
+		Labels(rhs.getName(), rhs.getLabels())
 	{
 	}
 
 	//move constructor
 	inline AbstractObject(AbstractObject &&rhs) :
-			labels(rhs.labels)
+			Labels(rhs.getName(), rhs.getLabels())
 	{
 	}
 
 	//copy assignment
 	inline AbstractObject& operator=(const AbstractObject &rhs)
 	{
-		this->labels = rhs.labels;
+
 		return *this;
 	}
 
 	//move assignment
 	inline AbstractObject& operator=(AbstractObject &&rhs)
 	{
-		this->labels = rhs.labels;
+
 		return *this;
 	}
 
 
-	virtual ~AbstractObject() = 0;
+	virtual ~AbstractObject();
 
-	/************************************************
-	 *  GETTER/SETTER
-	 ***********************************************/
-	std::string getName() const
-	{
-		return this->labels.getName();
-	}
-	std::string getLabel() const
-	{
-		return this->labels.getLabel();
-	}
-	std::vector<std::string> getLabels() const
-	{
-		return this->labels.getLabels();
-	}
-
-	void setName(std::string name)
-	{
-		this->labels.setName(name);
-	}
-
-	void setLabels(std::string label)
-	{
-		this->labels.setLabels(label);
-	}
-	void setLabels(std::vector<std::string> labels)
-	{
-		this->labels.setLabels(labels);
-	}
-
-	/************************************************
-	 *  MUTATORS
-	 ***********************************************/
-	void addLabel(std::string label)
-	{
-		this->labels.addLabel(label);
-	}
 
 	/************************************************
 	 *  FUNCTIONS
@@ -114,7 +73,7 @@ private:
 	/************************************************
 	 *  ATTRIBUTES
 	 ***********************************************/
-	Labels labels;
+
 
 };
 
