@@ -44,13 +44,13 @@ public:
 	inline Index& operator=(Index &&rhs)
 	{
 		this->index_ = rhs.index_;
-			return *this;
+		return *this;
 	}
 
 	//////////////////////////////////////////////////////////
 	//                       ACCESSOR                       //
 	//////////////////////////////////////////////////////////
-	inline unsigned long long GetIndex()
+	inline unsigned long long GetIndex() const
 	{
 		return index_;
 	}

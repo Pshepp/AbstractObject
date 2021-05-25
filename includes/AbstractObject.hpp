@@ -19,17 +19,17 @@ public:
 	 *  CONSTRUCTORS/DESTRUCTORS
 	 ***********************************************/
 
-	AbstractObject(std::string name) :
+	inline AbstractObject(std::string name) :
 		Labels(name)
 	{
 	}
 
-	AbstractObject(std::string name, std::string label) :
+	inline AbstractObject(std::string name, std::string label) :
 		Labels(name, label)
 	{
 	}
 
-	AbstractObject(std::string name, std::vector<std::string> labels) :
+	inline AbstractObject(std::string name, std::vector<std::string> labels) :
 		Labels(name, labels)
 	{
 	}
@@ -67,7 +67,7 @@ public:
 	/************************************************
 	 *  FUNCTIONS
 	 ***********************************************/
-	bool compareLabels(const std::vector<std::string> otherLabels);
+	inline bool compareLabels(const std::vector<std::string> otherLabels);
 
 private:
 	/************************************************
