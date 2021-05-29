@@ -12,49 +12,145 @@ public:
 	/************************************************
 	 *  CONSTRUCTORS/DESTRUCTORS
 	 ***********************************************/
-	Labels();
-	Labels(std::string name);
-	Labels(std::vector<std::string> labels);
-	Labels(std::string name, std::string label);
-	Labels(std::string name, std::vector<std::string> labels);
-	~Labels();
+	inline Labels() :
+			name("INCORRECT LABEL CONSTRUCTOR")
+	{
+	}
+
+	inline Labels(std::string name) :
+			name(name)
+	{
+	}
+
+	inline Labels(std::vector<std::string> labels) :
+			name("NO_NAME"), labels(labels)
+	{
+	}
+
+	inline Labels(std::string name, std::string label) :
+			name(name), labels(
+			{ label })
+	{
+	}
+
+	inline Labels(std::string name, std::vector<std::string> labels) :
+			name(name), labels(labels)
+	{
+	}
+
+	inline ~Labels()
+	{
+	}
 
 	//copy constructor
-	Labels(const Labels &rhs);
+	inline Labels(const Labels &rhs) :
+			name(rhs.name), labels(rhs.labels)
+	{
 
+	}
 	//move constructor
-	Labels(Labels &&rhs);
-
+	inline Labels(Labels &&rhs) :
+			name(rhs.name), labels(rhs.labels)
+	{
+	}
 	//copy assignment
-	Labels& operator=(const Labels &rhs);
-
+	inline Labels& operator =(const Labels &rhs)
+	{
+		this->name = rhs.name;
+		this->labels = rhs.labels;
+		return *this;
+	}
 	//move assignment
-	Labels& operator=(Labels &&rhs);
+	Labels& operator =(Labels &&rhs)
+	{
+		this->name = rhs.name;
+		this->labels = rhs.labels;
+		return *this;
+	}
 
 	/************************************************
 	 *  GETTER/SETTER
 	 ***********************************************/
-	std::string getName() const;
-	std::string getLabel() const;
-	std::vector<std::string> getLabels() const;
+	inline std::string getName() const
+	{
+		return this->name;
+	}
 
-	void setName(std::string name);
-	void setLabels(std::string label);
-	void setLabels(std::vector<std::string> labels);
+	inline std::string getLabel() const
+	{
+		if (this->labels.empty())
+			return "";
+		return this->labels.back();
+	}
+
+	inline std::vector<std::string> getLabels() const
+	{
+		return this->labels;
+	}
+
+	inline void setName(std::string name)
+	{
+		this->name = name;
+	}
+
+	inline void setLabels(std::string label)
+	{
+		this->labels.clear();
+		this->addLabel(label);
+	}
+
+	inline void setLabels(std::vector<std::string> labels)
+	{
+		this->labels = labels;
+	}
 
 	/************************************************
 	 *  MUTATORS
 	 ***********************************************/
-	void addLabel(std::string label);
-	void addLabels(std::vector<std::string> labels);
+	inline void addLabel(std::string label)
+	{
+		this->labels.push_back(label);
+	}
+
+	inline void addLabels(std::vector<std::string> labels)
+	{
+		this->labels.insert(this->labels.end(), labels.begin(), labels.end());
+	}
+
 
 	/************************************************
 	 *  FUNCTIONS
 	 ***********************************************/
-	bool containsLabel(const std::string query);
-	bool compareLabels(const std::vector<std::string> otherLabels);
-	bool compareLabels(const std::vector<std::string> otherLabels,
-			unsigned int numMatches);
+	inline bool containsLabel(const std::string query)
+	{
+		for (std::string currLabel : this->labels)
+		{
+			//TODO: Why was regex used in your version?
+			if (currLabel == query)
+				return true;
+		}
+		return false;
+	}
+	bool compareLabels(const std::vector<std::string> otherLabels)
+	{
+		return this->compareLabels(otherLabels, 1);
+	}
+	inline bool compareLabels(const std::vector<std::string> otherLabels,
+			unsigned int numMatches)
+	{
+		unsigned int matchCounter = 0;
+		for (std::string currLabel : this->labels)
+		{
+			if (std::find(otherLabels.begin(), otherLabels.end(), currLabel)
+					!= otherLabels.end())
+			{
+				matchCounter++;
+				if (matchCounter == numMatches)
+					return true;
+			}
+		}
+		return false;
+	}
 
 private:
 	/************************************************
@@ -67,3 +163,5 @@ private:
 }
 
 #endif // LABELS_HPP
+
+
