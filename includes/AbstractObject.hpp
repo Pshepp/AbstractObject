@@ -2,6 +2,7 @@
 #define ABSTRACTOBJECT_INCLUDES_GENERIC_OBJECT_HPP
 
 #include "Labels.hpp"
+#include "Index.hpp"
 
 namespace Abstract
 {
@@ -12,7 +13,7 @@ namespace Abstract
  * 			We could name it "generic identifiers" or something of the
  * 			sort.
  */
-class AbstractObject : public Labels
+class AbstractObject : public Labels, public Index
 {
 public:
 	/************************************************
@@ -26,6 +27,11 @@ public:
 
 	inline AbstractObject(std::string name, std::string label) :
 		Labels(name, label)
+	{
+	}
+
+	inline AbstractObject(std::string name, unsigned long long index) :
+			Labels(name), Index(index)
 	{
 	}
 
@@ -49,14 +55,12 @@ public:
 	//copy assignment
 	inline AbstractObject& operator=(const AbstractObject &rhs)
 	{
-
 		return *this;
 	}
 
 	//move assignment
 	inline AbstractObject& operator=(AbstractObject &&rhs)
 	{
-
 		return *this;
 	}
 

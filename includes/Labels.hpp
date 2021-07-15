@@ -1,40 +1,43 @@
 #ifndef ABSTRACTOBJECT_INCLUDES_LABELS_HPP
 #define ABSTRACTOBJECT_INCLUDES_LABELS_HPP
 
+#include <regex>
 #include <string>
 #include <vector>
 #include <algorithm>
 
 //TODO: Pick a better namespace name for this, figure out what we should use instead of `unsigned int`
-namespace Abstract {
-class Labels {
+namespace Abstract
+{
+class Labels
+{
 public:
 	/************************************************
 	 *  CONSTRUCTORS/DESTRUCTORS
 	 ***********************************************/
 	inline Labels() :
-			name("INCORRECT LABEL CONSTRUCTOR")
+			name_m("INCORRECT LABEL CONSTRUCTOR")
 	{
 	}
 
 	inline Labels(std::string name) :
-			name(name)
+			name_m(name)
 	{
 	}
 
 	inline Labels(std::vector<std::string> labels) :
-			name("NO_NAME"), labels(labels)
+			name_m("NO_NAME"), labels_m(labels)
 	{
 	}
 
 	inline Labels(std::string name, std::string label) :
-			name(name), labels(
+			name_m(name), labels_m(
 			{ label })
 	{
 	}
 
 	inline Labels(std::string name, std::vector<std::string> labels) :
-			name(name), labels(labels)
+			name_m(name), labels_m(labels)
 	{
 	}
 
@@ -44,27 +47,27 @@ public:
 
 	//copy constructor
 	inline Labels(const Labels &rhs) :
-			name(rhs.name), labels(rhs.labels)
+			name_m(rhs.name_m), labels_m(rhs.labels_m)
 	{
 
 	}
 	//move constructor
 	inline Labels(Labels &&rhs) :
-			name(rhs.name), labels(rhs.labels)
+			name_m(rhs.name_m), labels_m(rhs.labels_m)
 	{
 	}
 	//copy assignment
 	inline Labels& operator =(const Labels &rhs)
 	{
-		this->name = rhs.name;
-		this->labels = rhs.labels;
+		this->name_m = rhs.name_m;
+		this->labels_m = rhs.labels_m;
 		return *this;
 	}
 	//move assignment
 	Labels& operator =(Labels &&rhs)
 	{
-		this->name = rhs.name;
-		this->labels = rhs.labels;
+		this->name_m = rhs.name_m;
+		this->labels_m = rhs.labels_m;
 		return *this;
 	}
 
@@ -73,35 +76,35 @@ public:
 	 ***********************************************/
 	inline std::string getName() const
 	{
-		return this->name;
+		return this->name_m;
 	}
 
 	inline std::string getLabel() const
 	{
-		if (this->labels.empty())
+		if (this->labels_m.empty())
 			return "";
-		return this->labels.back();
+		return this->labels_m.back();
 	}
 
 	inline std::vector<std::string> getLabels() const
 	{
-		return this->labels;
+		return this->labels_m;
 	}
 
 	inline void setName(std::string name)
 	{
-		this->name = name;
+		this->name_m = name;
 	}
 
 	inline void setLabels(std::string label)
 	{
-		this->labels.clear();
+		this->labels_m.clear();
 		this->addLabel(label);
 	}
 
 	inline void setLabels(std::vector<std::string> labels)
 	{
-		this->labels = labels;
+		this->labels_m = labels;
 	}
 
 	/************************************************
@@ -109,21 +112,21 @@ public:
 	 ***********************************************/
 	inline void addLabel(std::string label)
 	{
-		this->labels.push_back(label);
+		this->labels_m.push_back(label);
 	}
 
 	inline void addLabels(std::vector<std::string> labels)
 	{
-		this->labels.insert(this->labels.end(), labels.begin(), labels.end());
+		this->labels_m.insert(this->labels_m.end(), labels.begin(),
+				labels.end());
 	}
-
 
 	/************************************************
 	 *  FUNCTIONS
 	 ***********************************************/
 	inline bool containsLabel(const std::string query)
 	{
-		for (std::string currLabel : this->labels)
+		for (std::string currLabel : this->labels_m)
 		{
 			//TODO: Why was regex used in your version?
 			if (currLabel == query)
@@ -139,7 +142,7 @@ public:
 			unsigned int numMatches)
 	{
 		unsigned int matchCounter = 0;
-		for (std::string currLabel : this->labels)
+		for (std::string currLabel : this->labels_m)
 		{
 			if (std::find(otherLabels.begin(), otherLabels.end(), currLabel)
 					!= otherLabels.end())
@@ -152,16 +155,28 @@ public:
 		return false;
 	}
 
+	inline std::string findLabelContaining(const std::string query)
+	{
+		std::regex regexQuery(query, std::regex_constants::ECMAScript);
+		for (auto &label : this->getLabels())
+		{
+			if (std::regex_search(label, regexQuery))
+			{
+				return label;
+			}
+		}
+		//std::cout << "Found nothing.\n";
+		return "";
+	}
 private:
 	/************************************************
 	 *  ATTRIBUTES
 	 ***********************************************/
-	std::string name;
-	std::vector<std::string> labels;
+	std::string name_m;
+	std::vector<std::string> labels_m;
 
 };
 }
 
 #endif // LABELS_HPP
-
 

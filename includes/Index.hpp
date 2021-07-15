@@ -14,58 +14,58 @@ public:
 	//////////////////////////////////////////////////////////
 	Index()
 	{
-		this->SetIndex(this->GenerateIndex());
+		this->setIndex(this->generateIndex());
 	}
 	Index(unsigned long long index)
 	{
-		this->SetIndex(index);
+		this->setIndex(index);
 	}
 
 	//copy constructor
 	inline Index(const Index &rhs) :
-			index_(rhs.index_)
+			index_m(rhs.index_m)
 	{
 	}
 
 	//move constructor
 	inline Index(Index &&rhs) :
-			index_(rhs.index_)
+			index_m(rhs.index_m)
 	{
 	}
 
 	//copy assignment
 	inline Index& operator=(const Index &rhs)
 	{
-		this->index_ = rhs.index_;
+		this->index_m = rhs.index_m;
 		return *this;
 	}
 
 	//move assignment
 	inline Index& operator=(Index &&rhs)
 	{
-		this->index_ = rhs.index_;
+		this->index_m = rhs.index_m;
 		return *this;
 	}
 
 	//////////////////////////////////////////////////////////
 	//                       ACCESSOR                       //
 	//////////////////////////////////////////////////////////
-	inline unsigned long long GetIndex() const
+	inline unsigned long long getIndex() const
 	{
-		return index_;
+		return index_m;
 	}
 	//////////////////////////////////////////////////////////
 	//                       MUTATOR                        //
 	//////////////////////////////////////////////////////////
-	inline void SetIndex(unsigned long long index)
+	inline void setIndex(unsigned long long index)
 	{
-		index_ = index;
+		index_m = index;
 	}
 private:
 	//////////////////////////////////////////////////////////
 	//                       FUNCTIONS                      //
 	//////////////////////////////////////////////////////////
-	inline unsigned long long GenerateIndex()
+	inline unsigned long long generateIndex()
 	{
 		static unsigned long long s_NodeIndex = 0; // static keyword means it is created only once and persists beyond scope of code block.
 		return s_NodeIndex++; // makes copy of index, increments the real index, then returns the value in the copy
@@ -73,7 +73,7 @@ private:
 	//////////////////////////////////////////////////////////
 	//                       ATTRIBUTES                     //
 	//////////////////////////////////////////////////////////
-	unsigned long long index_;
+	unsigned long long index_m;
 };
 
 }
