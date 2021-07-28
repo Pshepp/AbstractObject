@@ -21,12 +21,12 @@ public:
 	 ***********************************************/
 
 	inline AbstractObject(std::string name) :
-		Labels(name)
+		Labels(name), Index()
 	{
 	}
 
 	inline AbstractObject(std::string name, std::string label) :
-		Labels(name, label)
+		Labels(name, label), Index()
 	{
 	}
 
@@ -36,19 +36,19 @@ public:
 	}
 
 	inline AbstractObject(std::string name, std::vector<std::string> labels) :
-		Labels(name, labels)
+		Labels(name, labels), Index()
 	{
 	}
 
 	//copy constructor
 	inline AbstractObject(const AbstractObject &rhs) :
-		Labels(rhs.getName(), rhs.getLabels())
+		Labels(rhs.getName(), rhs.getLabels()), Index(rhs.getIndex())
 	{
 	}
 
 	//move constructor
 	inline AbstractObject(AbstractObject &&rhs) :
-			Labels(rhs.getName(), rhs.getLabels())
+			Labels(rhs.getName(), rhs.getLabels()), Index(rhs.getIndex())
 	{
 	}
 

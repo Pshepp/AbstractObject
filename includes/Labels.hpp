@@ -16,28 +16,28 @@ public:
 	 *  CONSTRUCTORS/DESTRUCTORS
 	 ***********************************************/
 	inline Labels() :
-			name_m("INCORRECT LABEL CONSTRUCTOR")
+			name_m(""), labels_m( { "" } )
 	{
 	}
 
-	inline Labels(std::string name) :
-			name_m(name)
+	inline Labels(std::string name_t) :
+			name_m(name_t), labels_m( { "" } )
 	{
 	}
 
-	inline Labels(std::vector<std::string> labels) :
-			name_m("NO_NAME"), labels_m(labels)
+	inline Labels(std::vector<std::string> labels_t) :
+			name_m(""), labels_m(labels_t)
 	{
 	}
 
-	inline Labels(std::string name, std::string label) :
-			name_m(name), labels_m(
-			{ label })
+	inline Labels(std::string name_t, std::string label_t) :
+			name_m(name_t), labels_m(
+			{ label_t })
 	{
 	}
 
-	inline Labels(std::string name, std::vector<std::string> labels) :
-			name_m(name), labels_m(labels)
+	inline Labels(std::string name_t, std::vector<std::string> labels_t) :
+			name_m(name_t), labels_m(labels_t)
 	{
 	}
 
@@ -91,28 +91,28 @@ public:
 		return this->labels_m;
 	}
 
-	inline void setName(std::string name)
+	inline void setName(std::string name_t)
 	{
-		this->name_m = name;
+		this->name_m = name_t;
 	}
 
-	inline void setLabels(std::string label)
+	inline void setLabels(std::string label_t)
 	{
 		this->labels_m.clear();
-		this->addLabel(label);
+		this->addLabel(label_t);
 	}
 
-	inline void setLabels(std::vector<std::string> labels)
+	inline void setLabels(std::vector<std::string> labels_t)
 	{
-		this->labels_m = labels;
+		this->labels_m = labels_t;
 	}
 
 	/************************************************
 	 *  MUTATORS
 	 ***********************************************/
-	inline void addLabel(std::string label)
+	inline void addLabel(std::string label_t)
 	{
-		this->labels_m.push_back(label);
+		this->labels_m.push_back(label_t);
 	}
 
 	inline void addLabels(std::vector<std::string> labels)
