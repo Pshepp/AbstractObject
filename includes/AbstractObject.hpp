@@ -4,7 +4,7 @@
 #include "Labels.hpp"
 #include "Index.hpp"
 
-namespace Abstract
+namespace abstrab
 {
 /* TODO: Figure out a better name and what data we want to include. Do
  * 			we want/need index counting? This could be a pain when

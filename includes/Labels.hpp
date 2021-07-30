@@ -7,7 +7,7 @@
 #include <algorithm>
 
 //TODO: Pick a better namespace name for this, figure out what we should use instead of `unsigned int`
-namespace Abstract
+namespace abstrab
 {
 class Labels
 {
